@@ -1,0 +1,51 @@
+.info{
+    clear: both;
+    height: 50px;
+    margin:0px auto 50px;
+}
+
+.info .infoarea{
+    float:left;
+    padding:10px;
+    height: 400px;
+}
+
+.info .infoarea img{
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.pname{
+    margin-bottom: 10px;
+    height: 100px;
+}
+
+.info >p{
+    font-size: 28px;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+ul{
+    padding: 0;
+}
+
+li{
+    list-style-type: none;
+}
+
+.col3 {
+    padding-top: 5px;
+    text-align: center;
+}
+
+#goodsName{
+    width: 210px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+}
