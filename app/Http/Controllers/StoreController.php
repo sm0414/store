@@ -23,8 +23,8 @@ class StoreController extends Controller
     public function index()
     {
         $goods = Good::all();
-        $data = ['goods'=>$goods];
-        return view('index',$data);
+
+        return view('index', ['goods' => $goods]);
     }
 
     public function cart()
@@ -40,10 +40,12 @@ class StoreController extends Controller
 
     public function addToCart($id)
     {
-        $good = Good::find($id);
+        $product = Good::find($id);
+
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add($good);
+        $cart->add($product);
+
         Session::put('cart', $cart);
     }
 
