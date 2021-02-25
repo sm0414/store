@@ -17,11 +17,8 @@ Auth::routes();
 
 Route::get('/','StoreController@index')->name('index');
 
-Route::get('goodsDetail','userController@goodsDetail')->name('goodsDetail');
-
-Route::get('cart','userController@cart')->name('cart');
-Route::post('cartPost','userController@cartPost')->name('cartPost');
-
-Route::get('orders','userController@orders')->name('orders');
-
-Route::post('addPost','userController@addPost')->name('addPost');
+Route::get('/cart', 'StoreController@cart')->name('cart');
+Route::get('/increase-one/{id}', 'StoreController@increaseByOne');
+Route::get('/decrease-one/{id}', 'StoreController@decreaseByOne');
+Route::get('/remove-item/{id}', 'StoreController@removeItem');
+Route::get('/add-to-cart/{id}', 'StoreController@addToCart');

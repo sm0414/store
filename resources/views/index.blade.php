@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link href="{{ asset('css/index.css') }}" rel="stylesheet">
+<link href={{ asset('css/index.css') }} rel="stylesheet">
 @endsection
 
 @section('content')
@@ -9,27 +9,26 @@
 
 <div class='info'>
 
-    @foreach($goods as $row)
+    @foreach($goods as $good)
         <div class='infoarea col-xs-4 col-sm-6 col-md-4 col-lg-3' style="height:470px;">
 
-            <div style="height:380px;margin: auto;width: 240px;padding:0 20px;border-style: solid;border-width:1px;border-color: #BDB76B;">
+            <div style="height:380px; margin: auto; width: 240px; padding:0 20px; border-style: solid; border-width:1px; border-color: #BDB76B;">
                 <ul>
-                    <li class="img"><a href="goodsDetail?id={{ $row['gId'] }}"><img src="../storage/app/public/image/{{ $row['image'] }}"/></a></li>
+                    <li class="img"><a href="goodsDetail?id={{ $good['id'] }}"><img src="../storage/app/public/image/{{ $good['image'] }}"/></a></li>
 
                     <li class="pname" style="margin-bottom:0; height:80px;">
-                        <a href="goodsDetail?id={{ $row['gId'] }}">
-                            <p id="goodsName">{{ $row['name'] }}</p>
+                        <a href="goodsDetail?id={{ $good['id'] }}">
+                            <p id="goodsName">{{ $good['name'] }}</p>
                         </a>
                     </li>
 
-                    <li>價格：{{ $row['price'] }}</li>
+                    <li>價格：{{ $good['price'] }}</li>
 
                     <hr style="margin-bottom: 8px; margin-top: 8px;">
 
                     <li class="col3" style="margin-top:3px;">
-                        <a id="add" class="add_cart" href="javascript:void(0)" 	onclick="addToCart({{ $row['gId'] }},'{{ $row['name'] }}','{{ $row['image'] }}','{{ $row['price'] }}',0,'list')">
-
-                            <img src="../storage/app/public/image/add_to_cart.png" style="width:110px; height:28px;">
+                        <a id="add" class="add_cart" href="javascript:void(0)" 	onclick="addToCart({{ $good['id'] }})">
+                            <img src={{ asset('image/add_to_cart.png') }} style="width:110px; height:28px;">
                         </a>
 
                     </li>
@@ -38,6 +37,22 @@
 
         </div>
     @endforeach
-
 </div>
+@endsection
+
+@section('script')
+function addToCart(id){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $.ajax({
+        type: "get",
+        url: "/add-to-cart/"+id,
+    }).then(function(e){
+        alert("商品已加入購物車！！");
+    })
+}
 @endsection
