@@ -27,6 +27,13 @@ class StoreController extends Controller
         return view('index', ['goods' => $goods]);
     }
 
+    public function goodsDetail($id)
+    {
+        $product = Good::find($id);
+
+        return view('goodsDetail', ['product' => $product]);
+    }
+
     public function cart()
     {
         $cart = Session::has('cart') ? Session::get('cart') : new Cart(null);

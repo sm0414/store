@@ -17,6 +17,8 @@ Auth::routes();
 
 Route::get('/','StoreController@index')->name('index');
 
+Route::get('/goodsDetail/{id}', 'StoreController@goodsDetail');
+
 Route::get('/cart', 'StoreController@cart')->name('cart');
 Route::get('/increase-one/{id}', 'StoreController@increaseByOne');
 Route::get('/decrease-one/{id}', 'StoreController@decreaseByOne');
