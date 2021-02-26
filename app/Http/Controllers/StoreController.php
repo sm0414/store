@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Good;
+use App\Order;
+use App\OrderItem;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class StoreController extends Controller
@@ -84,5 +87,44 @@ class StoreController extends Controller
         Session::put('cart', $cart);
 
         return redirect()->action('StoreController@cart');
+    }
+
+    public function orders()
+    {
+        $orders = Order::all();
+
+        return view('orders', ['orders' => $orders]);
+    }
+
+    public function orderItems($id)
+    {
+        $order = Order::find($id);
+
+        return view('orderItem', ['order' => $order]);
+    }
+
+    public function checkout()
+    {
+        $carts = Session::get('cart')->items;
+        $totalPrice = Session::get('cart')->totalPrice;
+
+        $order = new Order();
+        $order->user_id = Auth::user()->id;
+        $order->total = $totalPrice;
+        $order->save();
+
+        foreach ($carts as $id => $item){
+            $orderItem = new OrderItem();
+            $orderItem->order_id = $order->id;
+            $orderItem->product_id = $id;
+            $orderItem->product_name = $item['name'];
+            $orderItem->product_quantity = $item['quantity'];
+            $orderItem->sum = $item['sum'];
+            $orderItem->save();
+        }
+
+        Session::forget('cart');
+
+        return redirect()->action('StoreController@orders');
     }
 }

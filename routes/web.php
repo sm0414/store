@@ -24,3 +24,7 @@ Route::get('/increase-one/{id}', 'StoreController@increaseByOne');
 Route::get('/decrease-one/{id}', 'StoreController@decreaseByOne');
 Route::get('/remove-item/{id}', 'StoreController@removeItem');
 Route::get('/add-to-cart/{id}', 'StoreController@addToCart');
+
+Route::get('/orders', 'StoreController@orders')->name('orders');
+Route::get('/order/{id}', 'StoreController@orderItems');
+Route::post('/checkout', 'StoreController@checkout');
