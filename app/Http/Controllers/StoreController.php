@@ -7,6 +7,7 @@ use App\Good;
 use App\Order;
 use App\OrderItem;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
 class StoreController extends Controller
@@ -91,7 +92,7 @@ class StoreController extends Controller
 
     public function orders()
     {
-        $orders = Order::all();
+        $orders = Order::where('user_id', Auth::id())->get();
 
         return view('orders', ['orders' => $orders]);
     }

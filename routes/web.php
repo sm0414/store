@@ -28,3 +28,7 @@ Route::get('/add-to-cart/{id}', 'StoreController@addToCart');
 Route::get('/orders', 'StoreController@orders')->name('orders');
 Route::get('/order/{id}', 'StoreController@orderItems');
 Route::post('/checkout', 'StoreController@checkout');
+
+Route::get('/manage/index', 'Manage\ManageController@index');
+Route::get('/manage/members', 'Manage\ManageController@members');
+Route::get('/manage/member_orders/{id}', 'Manage\ManageController@memberOrders');
