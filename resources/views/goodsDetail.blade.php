@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('css')
-<link href={{ asset('css/goodsDetail.css') }} rel="stylesheet">
+<link href="{{ asset('css/goodsDetail.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -9,7 +9,7 @@
     <table width="100%" border="0" align="center">
         <tr>
             <td width="40%" align="right">
-                <div><img src={{ asset('image/'.$product['image']) }} width="360px" height="360px"/></div>
+                <div><img src="{{ asset('image/'.$product['image']) }}" width="360px" height="360px"/></div>
                 <br>
             </td>
 
@@ -27,7 +27,7 @@
 
                 <div style="float:left; margin-left:150px; margin-top:40px;">
                     <a href="javascript:void(0)" onclick="addToCart({{ $product['id'] }})">
-                    <img src={{ asset('image/add_to_cart.png') }} style="width:185px; height:50px;"></a>
+                    <img src="{{ asset('image/add_to_cart.png') }}" style="width:185px; height:50px;"></a>
                 </div>
             </td>
         </tr>

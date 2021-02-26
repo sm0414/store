@@ -60,6 +60,10 @@
                                         {{ __('購物車') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('orders') }}">
+                                        {{ __('訂單') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
