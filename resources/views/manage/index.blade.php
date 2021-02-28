@@ -1,9 +1,8 @@
 @extends('layouts.app2')
 
 @section('content')
-    <div style="margin-top: 30px;" class="container col-10">
-
-        <h2 align="center" style="padding-top:20px;">商品資料</h2>
+    <div class="container col-10">
+        <h2 align="center" style="margin-top: 30px;">商品資料</h2>
 
         <span class="float-right" >
             <a class="btn btn-info" href="create">新增商品</a>

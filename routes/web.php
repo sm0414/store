@@ -30,5 +30,5 @@ Route::get('/order/{id}', 'StoreController@orderItems');
 Route::post('/checkout', 'StoreController@checkout');
 
 Route::get('/manage/index', 'Manage\ManageController@index');
-Route::get('/manage/members', 'Manage\ManageController@members');
-Route::get('/manage/member_orders/{id}', 'Manage\ManageController@memberOrders');
+Route::get('/manage/create', 'Manage\ManageController@create');
+Route::post('/manage/store', 'Manage\ManageController@store');

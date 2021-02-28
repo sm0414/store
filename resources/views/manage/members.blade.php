@@ -1,9 +1,8 @@
 @extends('layouts.app2')
 
 @section('content')
-    <div style="margin-top: 30px;" class="container">
-
-        <h2 align="center" style="padding-top:20px;">會員資料</h2>
+    <div class="container">
+        <h2 align="center" style="margin-top: 30px;">會員資料</h2>
 
         <table style="margin-top: 50px;" class="table table-hover table-striped">
 
