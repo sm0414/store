@@ -24,7 +24,7 @@
                     @foreach($items as $id => $item)
                         <tr style="height:150px;">
                             <td align="center" width="15%">
-                                <img src="{{ asset('image/'.$item['image']) }}" style="width: 150px; height: 150px;" />
+                                <img src="{{ asset('storage/image/'.$item['image']) }}" style="width: 150px; height: 150px;" />
                             </td>
                             <td height="50" align="left" class="trow"> {{ $item['name'] }} </td>
                             <td height="50" align="center" class="trow">

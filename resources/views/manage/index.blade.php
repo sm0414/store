@@ -23,7 +23,7 @@
             <tbody>
             @forelse($goods as $row)
                 <tr>
-                    <td><img src="{{ asset('image/'.$row['image']) }}" style="width:210px;height:210px;"></td>
+                    <td><img src="{{ asset('storage/image/'.$row['image']) }}" style="width:210px;height:210px;"></td>
                     <td>{{ $row['name'] }}</td>
                     <td>{{ $row['price'] }}</td>
                     <td>{!! $row['description'] !!}</td>

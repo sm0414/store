@@ -16,7 +16,7 @@
                 <ul>
                     <li class="img">
                         <a href="goodsDetail/{{ $row['id'] }}">
-                            <img src="{{ asset('image/'.$row['image']) }}" />
+                            <img src="{{ asset('storage/image/'.$row['image']) }}" />
                         </a>
                     </li>
 
@@ -32,7 +32,7 @@
 
                     <li class="col3" style="margin-top:3px;">
                         <a href="javascript:void(0)" onclick="addToCart({{ $row['id'] }})">
-                            <img src="{{ asset('image/add_to_cart.png') }}" style="width:110px; height:28px;">
+                            <img src="{{ asset('storage/image/add_to_cart.png') }}" style="width:110px; height:28px;">
                         </a>
 
                     </li>

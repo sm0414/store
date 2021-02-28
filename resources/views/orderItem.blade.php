@@ -22,7 +22,7 @@
                 @forelse($order->orderItems as $item)
                     <tr>
                         <td align="center" width="5%">
-                            <img src="{{ asset('image/'.$item->product->image) }}" style="width: 135px; height: 135px;" />
+                            <img src="{{ asset('storage/image/'.$item->product->image) }}" style="width: 135px; height: 135px;" />
                         </td>
                         <td>{{ $item->product_name }}</td>
                         <td>{{ $item->product_quantity }}</td>
