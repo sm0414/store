@@ -8,6 +8,7 @@ use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ManageController extends Controller
 {
@@ -58,13 +59,7 @@ class ManageController extends Controller
             // 要儲存的名稱
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
             // 上傳圖檔
-            $path = $request->file('image')->storeAs('public/image', $fileNameToStore);
-//            return $path;
-//            // make thumbnails
-//            $thumbStore = 'thumb.'.$filename.'_'.time().'.'.$extension;
-//            $thumb = Image::make($request->file('image')->getRealPath());
-//            $thumb->resize(80, 80);
-//            $thumb->save('storage/image/'.$thumbStore);
+            $request->file('image')->storeAs('public/image', $fileNameToStore);
 
         } else {
             $fileNameToStore = 'noimage.jpg';
@@ -112,13 +107,7 @@ class ManageController extends Controller
             // 要儲存的名稱
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
             // 上傳圖檔
-            $path = $request->file('image')->storeAs('public/image', $fileNameToStore);
-//            return $path;
-//            // make thumbnails
-//            $thumbStore = 'thumb.'.$filename.'_'.time().'.'.$extension;
-//            $thumb = Image::make($request->file('image')->getRealPath());
-//            $thumb->resize(80, 80);
-//            $thumb->save('storage/image/'.$thumbStore);
+            $request->file('image')->storeAs('public/image', $fileNameToStore);
         }
 
         $goods = Good::find($id);
@@ -133,21 +122,21 @@ class ManageController extends Controller
         return redirect('/manage/index')->with('success', '商品已修改!');
     }
 
-//    public function members()
-//    {
-//        if (Auth::user()->email != 'admin@gmail.com') {
-//            return redirect('/');
-//        }
-//
-//        $users = User::all();
-//
-//        return view('manage.members', ['users' => $users]);
-//    }
-//
-//    public function memberOrders($id)
-//    {
-//        $orders = Order::all();
-//
-//        return view('manage.orders', ['orders' => $orders]);
-//    }
+    public function delete($id)
+    {
+        $product = Good::find($id);
+
+        if (!isset($product)){
+            return redirect('/manage/index')->with('error', '找不到該商品!');
+        }
+
+        // 若該商品有照片則刪除
+        if($product->image != 'noimage.jpg'){
+            Storage::delete('public/image/'.$product->image);
+        }
+
+        $product->delete();
+
+        return redirect('/manage/index')->with('success', '商品已刪除!');
+    }
 }

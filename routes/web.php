@@ -34,3 +34,4 @@ Route::get('/manage/create', 'Manage\ManageController@create');
 Route::post('/manage/store', 'Manage\ManageController@store');
 Route::get('/manage/edit/{id}', 'Manage\ManageController@edit');
 Route::put('/manage/update/{id}', 'Manage\ManageController@update');
+Route::delete('/manage/delete/{id}', 'Manage\ManageController@delete');

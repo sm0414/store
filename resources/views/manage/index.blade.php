@@ -25,15 +25,19 @@
             <tbody>
             @forelse($goods as $row)
                 <tr>
-                    <td><img src="{{ asset('storage/image/'.$row['image']) }}" style="width:210px;height:210px;"></td>
-                    <td>{{ $row['name'] }}</td>
-                    <td>{{ $row['price'] }}</td>
-                    <td>{!! $row['description'] !!}</td>
+                    <td><img src="{{ asset('storage/image/'.$row->image) }}" style="width:210px;height:210px;"></td>
+                    <td>{{ $row->name }}</td>
+                    <td>{{ $row->price }}</td>
+                    <td>{!! $row->description !!}</td>
                     <td>
                         <span class="float-right">
-                            <a class=" btn btn-outline-success btn-sm" style="margin-bottom: 3px;" href="edit/{{ $row['id'] }}">修改</a>
-                            <a class="btn btn-danger btn-sm" onclick="deleteProduct({{ $row['id'] }})">刪除</a>
+                            <a class=" btn btn-outline-success btn-sm" style="margin-bottom: 3px;" href="edit/{{ $row->id }}">修改</a>
+                            {!! Form::open(['url' => 'manage/delete/'.$row->id, 'enctype' => 'multipart/form-data']) !!}
+                                {{ Form::hidden('_method', 'DELETE') }}
+                                {{ Form::submit('刪除', ['class' => 'btn btn-danger btn-sm']) }}
+                            {!! Form::close() !!}
                         </span>
+
                     </td>
                 </tr>
             @empty
@@ -43,22 +47,4 @@
         </table>
 
     </div>
-@endsection
-
-@section('script')
-$.ajaxSetup({
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-})
-
-function goDelete(id){
-    $.ajax({
-        type: "post",
-        url: "/delete",
-        data: {id: id}
-    }).then(function(e){
-        parent.location.reload();
-    })
-}
 @endsection
