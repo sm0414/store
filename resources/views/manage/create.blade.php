@@ -20,7 +20,7 @@
 
     <div class="form-group">
         {{ Form::label('description', '描述') }}
-        {{ Form::textarea('描述', '', ['class' => 'form-control col-8']) }}
+        {{ Form::textarea('描述', '', ['id' => 'article-ckeditor', 'class' => 'form-control col-8']) }}
     </div>
 
     <div class="form-group">
@@ -32,6 +32,4 @@
     {!! Form::close() !!}
 
 </div>
-
-
 @endsection
