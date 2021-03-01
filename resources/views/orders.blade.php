@@ -9,7 +9,7 @@
             <thead>
                 <tr>
                     <th>訂單時間</th>
-                    <th>商品數量</th>
+                    <th>品項</th>
                     <th>總價</th>
                 </tr>
             </thead>

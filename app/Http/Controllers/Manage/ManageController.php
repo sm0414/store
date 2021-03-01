@@ -62,7 +62,7 @@ class ManageController extends Controller
             $request->file('image')->storeAs('public/image', $fileNameToStore);
 
         } else {
-            $fileNameToStore = 'noimage.jpg';
+            $fileNameToStore = 'noimage.jpeg';
         }
 
         $goods = new Good();
@@ -131,7 +131,7 @@ class ManageController extends Controller
         }
 
         // 若該商品有照片則刪除
-        if($product->image != 'noimage.jpg'){
+        if($product->image != 'noimage.jpeg'){
             Storage::delete('public/image/'.$product->image);
         }
 
