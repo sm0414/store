@@ -29,6 +29,8 @@ Route::get('/orders', 'StoreController@orders')->name('orders');
 Route::get('/order/{id}', 'StoreController@orderItems');
 Route::post('/checkout', 'StoreController@checkout');
 
-Route::get('/manage/index', 'Manage\ManageController@index');
+Route::get('/manage/index', 'Manage\ManageController@index')->name('manage.index');
 Route::get('/manage/create', 'Manage\ManageController@create');
 Route::post('/manage/store', 'Manage\ManageController@store');
+Route::get('/manage/edit/{id}', 'Manage\ManageController@edit');
+Route::put('/manage/update/{id}', 'Manage\ManageController@update');

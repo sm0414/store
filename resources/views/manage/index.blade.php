@@ -2,6 +2,8 @@
 
 @section('content')
     <div class="container col-10">
+        @include('inc.message')
+
         <h2 align="center" style="margin-top: 30px;">商品資料</h2>
 
         <span class="float-right" >
