@@ -7,6 +7,7 @@ use App\Good;
 use App\Order;
 use App\OrderItem;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
 
 class StoreController extends Controller
@@ -27,23 +28,32 @@ class StoreController extends Controller
     {
         $goods = Good::all();
 
-        return view('index', ['goods' => $goods]);
+        return view('index', [
+            'goods' => $goods,
+            'balance' => $this->getBalance()
+            ]
+        );
     }
 
     public function goodsDetail($id)
     {
         $product = Good::find($id);
 
-        return view('goodsDetail', ['product' => $product]);
+        return view('goodsDetail', [
+            'product' => $product,
+            'balance' => $this->getBalance()
+            ]
+        );
     }
 
     public function cart()
     {
         $cart = Session::has('cart') ? Session::get('cart') : new Cart(null);
 
-        return view('cart',[
+        return view('cart', [
             'items'=> $cart->items,
-            'totalPrice'=> $cart->totalPrice
+            'totalPrice'=> $cart->totalPrice,
+            'balance' => $this->getBalance()
             ]
         );
     }
@@ -66,7 +76,7 @@ class StoreController extends Controller
 
         Session::put('cart', $cart);
 
-        return redirect()->action('StoreController@cart');
+        return redirect('cart');
     }
 
     public function decreaseByOne($id)
@@ -76,7 +86,7 @@ class StoreController extends Controller
 
         Session::put('cart', $cart);
 
-        return redirect()->action('StoreController@cart');
+        return redirect('cart');
     }
 
     public function removeItem($id)
@@ -86,21 +96,29 @@ class StoreController extends Controller
 
         Session::put('cart', $cart);
 
-        return redirect()->action('StoreController@cart');
+        return redirect('cart');
     }
 
     public function orders()
     {
         $orders = Order::where('user_id', Auth::id())->get();
 
-        return view('orders', ['orders' => $orders]);
+        return view('orders', [
+            'orders' => $orders,
+            'balance' => $this->getBalance()
+            ]
+        );
     }
 
     public function orderItems($id)
     {
         $order = Order::find($id);
 
-        return view('orderItem', ['order' => $order]);
+        return view('orderItem', [
+            'order' => $order,
+            'balance' => $this->getBalance()
+            ]
+        );
     }
 
     public function checkout()
@@ -108,8 +126,13 @@ class StoreController extends Controller
         $carts = Session::get('cart')->items;
         $totalPrice = Session::get('cart')->totalPrice;
 
+        if ($this->getBalance() < $totalPrice) {
+            return redirect('/cart')->with('error', '餘額不足!');
+        }
+
         $order = new Order();
-        $order->user_id = Auth::user()->id;
+        $order->order_number = time();
+        $order->user_id = Auth::id();
         $order->total = $totalPrice;
         $order->save();
 
@@ -125,6 +148,16 @@ class StoreController extends Controller
 
         Session::forget('cart');
 
-        return redirect()->action('StoreController@orders');
+        Http::asForm()->put('192.168.56.102:8888/api/withdrawal/'.Auth::id(), [
+            'money' => $totalPrice,
+            'remark' => '<商城購物>訂單編號: '.$order->order_number,
+        ]);
+
+        return redirect('orders')->with('success', '下單成功!');
+    }
+
+    private function getBalance()
+    {
+        return Http::get('192.168.56.102:8888/api/user/'.Auth::id())['balance'];
     }
 }

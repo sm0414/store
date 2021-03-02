@@ -5,9 +5,11 @@
 @endsection('css')
 
 @section('content')
-    <h2 align="center" style="padding-top:20px;">購物車</h2>
+    <div style="margin-top: 20px;" class="container">
+        <h2 align="center">購物車</h2>
 
-    <div style="margin-top: 30px;" class="container">
+        @include('inc.message')
+
         <form id="form" action="/checkout" method="POST">
             @csrf
             <br>

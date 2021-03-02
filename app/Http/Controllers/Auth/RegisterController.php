@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -64,6 +65,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Http::asForm()->post('192.168.56.102:8888/api/user/create', [
+            'username' => $data['name'],
+            'password' => $data['password'],
+        ]);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
