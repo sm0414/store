@@ -1,0 +1,64 @@
+version: '3'
+
+networks:
+    nginx-php74-mysql-redis:
+
+services:
+    # nginx
+    store_nginx-service:
+        image: nginx:stable-alpine
+        container_name: store_nginx-container
+        ports:
+            - 8000:8000
+        volumes:
+            - .:/var/www/project
+            - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - store_php74-service
+            - store_mysql-service
+#            - redis-service
+        networks:
+            - nginx-php74-mysql-redis
+
+    # php
+    store_php74-service:
+        build:
+            context: .
+            dockerfile: ./php/Dockerfile
+        container_name: store_php74-container
+        ports:
+            - 9001:9000
+        volumes:
+            - .:/var/www/project
+        networks:
+            - nginx-php74-mysql-redis
+
+    # mysql
+    store_mysql-service:
+        image: mysql:5.7
+        container_name: store_mysql-container
+        ports:
+            - 5306:4306
+        volumes:
+            - ./mysql:/var/lib/mysql
+        command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        restart: always
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: store
+          MYSQL_USER: user
+          MYSQL_PASSWORD: password
+        networks:
+            - nginx-php74-mysql-redis
+#
+#    # redis
+#    store_redis-service:
+#        image: redis:latest
+#        container_name: store_redis-container
+#        ports:
+#            - 7379:6379
+#        volumes:
+#            - ./redis.conf:/usr/local/etc/redis/redis.conf
+#        command: redis-server /usr/local/etc/redis/redis.conf
+#        networks:
+#            - nginx-php74-mysql-redis
