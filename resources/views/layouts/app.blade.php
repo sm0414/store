@@ -51,7 +51,7 @@
                             @endif
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="http://192.168.56.102:8888" role="button" style="padding-top: 10px; padding-right: 12px;">
+                                <a class="nav-link" href="#" role="button" style="padding-top: 10px; padding-right: 12px;">
                                     帳戶餘額:{{ $balance }}
                                 </a>
                             </li>
@@ -66,6 +66,10 @@
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('orders') }}">
+                                        {{ __('訂單') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="http://192.168.56.102:8888" target="_blank">
                                         {{ __('訂單') }}
                                     </a>
 
