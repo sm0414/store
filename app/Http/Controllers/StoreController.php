@@ -148,7 +148,7 @@ class StoreController extends Controller
 
         Session::forget('cart');
 
-        Http::asForm()->put('192.168.56.102:8888/api/withdrawal/'.Auth::id(), [
+        Http::asForm()->put('192.168.56.102:8888/api/withdrawal/'.Auth::user()->name, [
             'money' => $totalPrice,
             'remark' => '<商城購物>訂單編號: '.$order->order_number,
         ]);
@@ -158,6 +158,6 @@ class StoreController extends Controller
 
     private function getBalance()
     {
-        return Http::get('192.168.56.102:8888/api/user/'.Auth::id())['balance'];
+        return Http::get('192.168.56.102:8888/api/user/'.Auth::user()->name)['balance'];
     }
 }
