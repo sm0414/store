@@ -1,5 +1,8 @@
 # <p align="center">網路商城</p>
 
+使用Laravel框架完成，搭配網銀系統使用，結帳前記得先到網銀進行存款~
+
+port: 8000
 
 ### 請先安裝網銀並run起來
 - https://github.com/sm0414/Internet-banking
