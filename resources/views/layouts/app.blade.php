@@ -70,7 +70,7 @@
                                     </a>
 
                                     <a class="dropdown-item" href="http://192.168.56.102:8888" target="_blank">
-                                        {{ __('訂單') }}
+                                        {{ __('個人網銀') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
