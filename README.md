@@ -7,4 +7,4 @@
 ### 下載後請依序執行
     $ docker-compose up -d --build
     $ composer install
-    $ docker exec -it store_php74-container bash -c "php artisan key:generate && php artisan migrate && chmod 777 -R storage"
+    $ docker exec -it store_php74-container bash -c "php artisan key:generate && php artisan migrate && chmod 777 -R storage && php artisan storage:link"

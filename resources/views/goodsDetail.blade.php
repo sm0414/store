@@ -27,7 +27,7 @@
 
                 <div style="float:left; margin-left:150px; margin-top:40px;">
                     <a href="javascript:void(0)" onclick="addToCart({{ $product['id'] }})">
-                    <img src="{{ asset('storage/image/add_to_cart.png') }}" style="width:185px; height:50px;"></a>
+                    <img src="https://store-by-laravel.s3.us-east-2.amazonaws.com/images/add_to_cart.png" style="width:185px; height:50px;"></a>
                 </div>
             </td>
         </tr>

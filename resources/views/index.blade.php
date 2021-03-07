@@ -32,7 +32,7 @@
 
                     <li class="col3" style="margin-top:3px;">
                         <a href="javascript:void(0)" onclick="addToCart({{ $row['id'] }})">
-                            <img src="{{ asset('storage/image/add_to_cart.png') }}" style="width:110px; height:28px;">
+                            <img src="https://store-by-laravel.s3.us-east-2.amazonaws.com/images/add_to_cart.png" style="width:110px; height:28px;">
                         </a>
 
                     </li>
