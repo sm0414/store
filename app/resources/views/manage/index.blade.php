@@ -25,7 +25,13 @@
             <tbody>
             @forelse($goods as $row)
                 <tr>
-                    <td><img src="{{ asset('storage/image/'.$row->image) }}" style="width:210px;height:210px;"></td>
+                    <td>
+                        @if($row->image == 'https://store-by-laravel.s3.us-east-2.amazonaws.com/images/noimage.jpeg')
+                            <img src="https://store-by-laravel.s3.us-east-2.amazonaws.com/images/noimage.jpeg" style="width:210px;height:210px;">
+                        @else
+                            <img src="{{ asset('storage/image/'.$row->image) }}" style="width:210px;height:210px;">
+                        @endif
+                    </td>
                     <td>{{ $row->name }}</td>
                     <td>{{ $row->price }}</td>
                     <td>{!! $row->description !!}</td>

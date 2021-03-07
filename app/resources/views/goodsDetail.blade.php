@@ -9,7 +9,13 @@
     <table width="100%" border="0" align="center">
         <tr>
             <td width="40%" align="right">
-                <div><img src="{{ asset('storage/image/'.$product['image']) }}" width="360px" height="360px"/></div>
+                <div>
+                    @if($product['image'] == 'https://store-by-laravel.s3.us-east-2.amazonaws.com/images/noimage.jpeg')
+                        <img src="https://store-by-laravel.s3.us-east-2.amazonaws.com/images/noimage.jpeg" width="360px" height="360px"/>
+                    @else
+                        <img src="{{ asset('storage/image/'.$product['image']) }}" width="360px" height="360px"/>
+                    @endif
+                </div>
                 <br>
             </td>
 

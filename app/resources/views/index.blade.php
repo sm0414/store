@@ -16,7 +16,11 @@
                 <ul>
                     <li class="img">
                         <a href="goodsDetail/{{ $row['id'] }}">
-                            <img src="{{ asset('storage/image/'.$row['image']) }}" />
+                            @if($row['image'] == 'https://store-by-laravel.s3.us-east-2.amazonaws.com/images/noimage.jpeg')
+                                <img src="https://store-by-laravel.s3.us-east-2.amazonaws.com/images/noimage.jpeg" />
+                            @else
+                                <img src="{{ asset('storage/image/'.$row['image']) }}" />
+                            @endif
                         </a>
                     </li>
 
