@@ -69,7 +69,7 @@
                                         {{ __('訂單') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="http://192.168.56.102:8888" target="_blank">
+                                    <a class="dropdown-item" href="http://192.168.56.102:8888/logout" target="_blank">
                                         {{ __('個人網銀') }}
                                     </a>
 
