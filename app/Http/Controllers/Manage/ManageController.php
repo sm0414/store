@@ -63,7 +63,7 @@ class ManageController extends Controller
             $request->file('image')->storeAs('public/image', $fileNameToStore);
 
         } else {
-            $fileNameToStore = 'noimage.jpeg';
+            $fileNameToStore = 'https://store-by-laravel.s3.us-east-2.amazonaws.com/images/noimage.jpeg';
         }
 
         $goods = new Good();
