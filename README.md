@@ -6,8 +6,8 @@ port: 8000
 
 > 登入管端帳密，對商品進行管理
 >- E-Mail Address: admin@gmail.com
->- Password: 12345678
- 
+>- Password: 12345678  
+
 ### 請先安裝網銀並run起來
 - https://github.com/sm0414/Internet-banking
 #
